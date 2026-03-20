@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>OAuth Code</h2>
+<div id="result" style="font-size:18px;margin:20px"></div>
+<script>
+var p=new URLSearchParams(location.search);
+var code=p.get('code'),shop=p.get('shop_id');
+if(code){
+  document.getElementById('result').innerHTML=
+    '<b>Code:</b> '+code+'<br><b>Shop ID:</b> '+shop+
+    '<br><br>この2つを拡張機能にコピーしてください';
+}else{
+  document.getElementById('result').textContent='パラメータなし';
+}
+</script>
+</body>
+</html>
