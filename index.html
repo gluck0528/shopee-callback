@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Shopee 認可結果</title>
+  <script src="./callback.js" defer></script>
+</head>
 <body>
-<h2>OAuth Code</h2>
-<div id="result" style="font-size:18px;margin:20px"></div>
-<script>
-var p=new URLSearchParams(location.search);
-var code=p.get('code'),shop=p.get('shop_id');
-if(code){
-  document.getElementById('result').innerHTML=
-    '<b>Code:</b> '+code+'<br><b>Shop ID:</b> '+shop+
-    '<br><br>この2つを拡張機能にコピーしてください';
-}else{
-  document.getElementById('result').textContent='パラメータなし';
-}
-</script>
+  <main>
+    <h1>Shopee 認可結果</h1>
+    <p id="status">確認中…</p>
+    <p>認可コード: <code id="code"></code></p>
+    <p id="account"></p>
+    <p>コードは短時間・一度限りです。認可したAppの安全な設定画面へ入力し、チャットやシートへ貼らないでください。</p>
+  </main>
 </body>
 </html>
