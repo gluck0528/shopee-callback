@@ -19,7 +19,7 @@ if (error) {
   if (callback !== callbackUrl || !state || !/^[A-Za-z0-9_-]{16,128}$/.test(state) || !validCode || !validShop) {
     status.textContent = mainAccountId ? 'ショップアカウントでログインし直してください。現在はショップごとの接続に対応しています。' : '認可情報を確認できません。SellSmartからリンクを作り直してください。';
   } else {
-    status.textContent = 'SellSmartにショップを接続しています。しばらくお待ちください。';
+    status.textContent = '認可情報を受け取りました。接続結果はSellSmartのサイドバーに表示されます。シートへ戻って確認してください。';
     const destination = new URL(callbackUrl);
     destination.searchParams.set('state', state);
     destination.searchParams.set('code', code);
@@ -27,6 +27,8 @@ if (error) {
     window.location.replace(destination.href);
   }
 } else if (validCode && (validShop || (mainAccountId && /^\d+$/.test(mainAccountId)))) {
+  const manual = document.getElementById('manual');
+  if (manual) manual.hidden = false;
   status.textContent = '認可コードを受け取りました。SellSmartの手動入力欄に貼り付けてください。';
   document.getElementById('code').textContent = code;
   document.getElementById('account').textContent = validShop ? 'Shop ID: ' + shopId : 'Main Account ID: ' + mainAccountId;
